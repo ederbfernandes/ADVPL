@@ -1,0 +1,16 @@
+#Include 'Protheus.ch'
+
+
+/*/{Protheus.doc} User Function ESPNOME
+    Função para criação de módulo específico do protheus
+    @type  Function
+    @author 
+    @since 03/03/2021
+    @version 1.0
+    @return cRet
+    @see https://tdn.totvs.com/display/public/PROT/ESPNOME+-+Ponto+de+Entrada
+    /*/
+User Function ESPNOME()
+cRet := "ADVPLII"
+    
+Return cRet
