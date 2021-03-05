@@ -1,0 +1,19 @@
+#Include 'totvs.ch'
+
+/*/{Protheus.doc} User Function zTDialog
+    Criação de tela atraves da classe TDialog
+    @type  Function
+    @author Eder Fernandes
+    @since 04/03/2021
+    @version 1.0
+    @see (https://tdn.totvs.com/display/tec/Construtor+TDialog%3ANew)
+    /*/
+
+User Function zTDialog()
+
+	Local oDlg1   // variável que receberá a classe TDialog
+
+	oDlg1 := TDialog():New(180, 180, 550, 700, 'Exemplo TDialog', /*uParam6*/ , /*uParam7*/ , /*uParam8*/ , /*uParam9*/ , CLR_BLACK, CLR_WHITE, /*uParam12*/ , /*oWnd*/ , .T., /*uParam15*/ , /*uParam16*/ , /*uParam17*/ , /*nWidth*/ , /*nHeight*/ , /*lTransparent*/ )   
+
+
+Return
