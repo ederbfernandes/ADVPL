@@ -1,0 +1,32 @@
+#Include 'totvs.ch'
+
+/*/{Protheus.doc} User Function zTButton
+    Criação de Botao atraves da classe TButton
+    @type  Function
+    @author Eder Fernandes
+    @since 04/03/2021
+    @version 1.0
+    @see (https://tdn.totvs.com/display/tec/Construtor+TButton%3ANew)
+    /*/
+
+User Function zTButton()
+
+	Local oDlg1    
+    Local oButton1 
+    Local oButton2 
+    Local oButton3 
+    Local oButton4 
+    Local oButton5
+    Local cTituloJanela := "Exemplos TButton"
+
+	oDlg1    := TDialog():New(180, 180, 550, 700, cTituloJanela, , , , , CLR_BLACK, CLR_WHITE, , , .T., , , , , , )
+    
+    oButton1 := TButton():New(20 , 50, "Clientes"    , oDlg1, {||Mata030()}  , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+    oButton2 := TButton():New(40 , 50, "Fornecedores", oDlg1, {||Mata020()}  , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+    oButton3 := TButton():New(60 , 50, "Bancos"      , oDlg1, {||Mata070()}  , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+    oButton4 := TButton():New(80 , 50, "Produtos"    , oDlg1, {||Mata010()}  , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+    oButton5 := TButton():New(100, 50, "Fechar"      , oDlg1, {||oDlg1:End()}, 60, 15, , , .F., .T., .F., , .F., , , .F.)
+
+	oDlg1:Activate(,,,.F.)     // .T. Ativa janela no meio da tela   |  .F. Ativa janela de acordo com as coodenadas passadas nos parametros da classe
+
+Return
