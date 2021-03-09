@@ -1,0 +1,70 @@
+#Include 'totvs.ch'
+
+User Function zTGet2
+	//Variáveis
+	Local oDlg1
+	Local oSay1
+	Local oButton1
+	Local oButton2
+	Local oButton3
+	Local cGet1    := Space(6) //Variável que irá capturar o que for digitado
+	Local cGet2    := Space(2)
+	Local oGet1     //Variável responsável por receber a Classe/construtor TGet
+	Local oGet2
+
+
+	oDlg1       := TDialog():New(0,0,200,500,"Bloqueador de Clientes",,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+
+	oSay1 := TSay():New(10, 10, {||"Cliente"}, oDlg1, , , , , , .T., CLR_BLUE, CLR_WHITE, 300, 20)
+	oSay2 := TSay():New(10, 60, {||"Loja"}   , oDlg1, , , , , , .T., CLR_BLUE, CLR_WHITE, 300, 20)
+
+	oGet1 := TGet():New(20, 10, {|u| IIF(Pcount()>0,cGet1:=u,cGet1)}, oDlg1, 40, 10, "@!", , 0, , , .F., , .T., , .F., , .F., .F., , .F., .F., , cGet1, , , ,)
+	oGet2 := TGet():New(20, 60, {|u| IIF(Pcount()>0,cGet2:=u,cGet2)}, oDlg1, 20, 10, "@!", , 0, , , .F., , .T., , .F., , .F., .F., , .F., .F., , cGet2, , , ,)
+	oGet1:cF3 := "SA1"
+	oButton1 := TButton():New(60, 10 , "Bloquear"   , oDlg1, {|| fBloq(cGet1,cGet2)}   , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+	oButton2 := TButton():New(80, 10 , "Desbloquear", oDlg1, {|| fDesbloq(cGet1,cGet2)}, 60, 15, , , .F., .T., .F., , .F., , , .F.)
+	oButton3 := TButton():New(80, 150, "Fechar"     , oDlg1, {|| oDlg1:End()}          , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+
+
+	oDlg1:Activate(,,,.T.)
+
+Return
+
+
+Static Function fBloq(cCod,cLoja)
+
+	DbSelectarea("SA1")
+	DbSetOrder(1)
+	If !(DbSeek(xFilial("SA1")+cCod+cLoja))
+
+		MsgInfo("Registro não encontrado!!")
+
+	Else
+
+		RecLock("SA1",.F.)  //Usa se .T. para inclusao e .F. para ediçao
+			SA1->A1_MSBLQL := '1'
+
+		MsUnlock()
+
+		MsgInfo("o cliente com o código " + cCod+" e loja "+cLoja+ " está sendo bloqueado !!", "Atenção")
+	Endif
+	("SA1")->(DbCloseArea())
+
+Return
+
+Static Function fDesbloq(cCod,cLoja)
+
+	DbSelectArea("SA1")
+	DbSetOrder(1)
+	If (Dbseek(xFilial("SA1")+cCod+cLoja))
+
+		RecLock("SA1",.F.)
+			SA1->A1_MSBLQL :='2'
+
+		MsUnlock()
+
+	Endif
+
+	("SA1")->(DbCloseArea())
+
+Return
