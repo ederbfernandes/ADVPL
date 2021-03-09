@@ -1,0 +1,54 @@
+#Include 'totvs.ch'
+
+/*/{Protheus.doc} User Function zMsAdvSize
+    Criação de Botao atraves da classe MsAdvSize
+    @type  Function
+    @author Eder Fernandes
+    @since 06/03/2021
+    @version 1.0
+    @see (https://tdn.totvs.com/display/tec/Construtor+TSay%3ANew)
+    /*/
+
+User Function zMsAdvSize()
+
+	Local oDlg1
+	Local oSay1
+	Local oSay2
+	Local oSay3
+	Local oSay4
+	Local oSay5
+	Local oButton1
+	Local oButton2
+	Local oButton3
+	Local oButton4
+	Local oButton5
+    Local oSaySize
+    Local aSize         := MsADvSize()   //Funçao que retorna as coordenadas da tela
+    Local cSize1,cSize5,cSize6,cSize7 
+	Local cTituloJanela := "Exemplos MsAdvSize"
+
+
+    cSize1 := cValtoChar(aSize[1])
+    cSize5 := cValtoChar(aSize[5])
+    cSize6 := cValtoChar(aSize[6])
+    cSize7 := cValtoChar(aSize[7])
+
+	oDlg1    := TDialog():New(aSize[7], aSize[1], aSize[6], aSize[5], cTituloJanela, , , , , CLR_BLACK, CLR_WHITE, , , .T., , , , , , )
+
+    oSay1 := TSay():New(10 , 50, {||"Clientes"}    , oDlg1, , , , , , .T., CLR_BLUE, CLR_WHITE, 200, 20, /*uParam15*/, /*uParam16*/, /*uParam17*/, /*uParam18*/, /*uParam19*/, /*lHTML*/, /*nTxtAlgHor*/, /*nTxtAlgVer*/)
+    oSay2 := TSay():New(40 , 50, {||"Fornecedores"}, oDlg1, , , , , , .T., CLR_BLUE, CLR_WHITE, 200, 20, /*uParam15*/, /*uParam16*/, /*uParam17*/, /*uParam18*/, /*uParam19*/, /*lHTML*/, /*nTxtAlgHor*/, /*nTxtAlgVer*/)
+    oSay3 := TSay():New(70 , 50, {||"Bancos"}      , oDlg1, , , , , , .T., CLR_BLUE, CLR_WHITE, 200, 20, /*uParam15*/, /*uParam16*/, /*uParam17*/, /*uParam18*/, /*uParam19*/, /*lHTML*/, /*nTxtAlgHor*/, /*nTxtAlgVer*/)
+    oSay4 := TSay():New(100, 50, {||"Produtos"}    , oDlg1, , , , , , .T., CLR_BLUE, CLR_WHITE, 200, 20, /*uParam15*/, /*uParam16*/, /*uParam17*/, /*uParam18*/, /*uParam19*/, /*lHTML*/, /*nTxtAlgHor*/, /*nTxtAlgVer*/)
+    oSay5 := TSay():New(130, 50, {||"Fechar"}      , oDlg1, , , , , , .T., CLR_BLUE, CLR_WHITE, 200, 20, /*uParam15*/, /*uParam16*/, /*uParam17*/, /*uParam18*/, /*uParam19*/, /*lHTML*/, /*nTxtAlgHor*/, /*nTxtAlgVer*/)
+
+	oButton1 := TButton():New(20 , 50, "Clientes"    , oDlg1, {||Mata030()}  , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+	oButton2 := TButton():New(50 , 50, "Fornecedores", oDlg1, {||Mata020()}  , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+	oButton3 := TButton():New(80 , 50, "Bancos"      , oDlg1, {||Mata070()}  , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+	oButton4 := TButton():New(110, 50, "Produtos"    , oDlg1, {||Mata010()}  , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+	oButton5 := TButton():New(140, 50, "Fechar"      , oDlg1, {||oDlg1:End()}, 60, 15, , , .F., .T., .F., , .F., , , .F.)
+
+    oSaySize :=  TSay():New(200, 50, {||"MSAdvSize[1]= " + cSize1 + " " + "MSAdvSize[5]= " + cSize5 + " " + "MSAdvSize[6]= " + cSize6 + " " + "MSAdvSize[7]= " + cSize7}, oDlg1, , , , , , .T., CLR_BLUE, CLR_WHITE, 200, 20, /*uParam15*/, /*uParam16*/, /*uParam17*/, /*uParam18*/, /*uParam19*/, /*lHTML*/, /*nTxtAlgHor*/, /*nTxtAlgVer*/)
+
+	oDlg1:Activate(,,,.F.)     // .T. Ativa janela no meio da tela   |  .F. Ativa janela de acordo com as coodenadas passadas nos parametros da classe
+
+Return
