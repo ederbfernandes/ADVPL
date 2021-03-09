@@ -1,0 +1,32 @@
+#Include "totvs.ch"
+
+
+User Function zTget()
+
+
+	//Variáveis
+	Local oDlg1
+	Local oSay1
+	Local oButton1
+	Local oButton2
+	Local cGet1    := Space(40) //Variável que irá capturar o que for digitado
+	Local cGet2    := Space(40) 
+	Local oGet1     //Variável responsável por receber a Classe/construtor TGet
+	Local oGet2     
+	Local aSize := MsAdvsize()
+
+	oDlg1       := TDialog():New(aSize[7],aSize[1],aSize[6],aSize[5],"Modelo TGET",,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+
+	oSay1 := TSay():New(10, 10 , {||"Nome"}    , oDlg1, , , , , , .T., CLR_BLUE, CLR_WHITE, 300, 20)
+	oSay2 := TSay():New(10, 150, {||"Endereço"}, oDlg1, , , , , , .T., CLR_BLUE, CLR_WHITE, 300, 20)
+
+	oGet1 := TGet():New(20, 10 , {|u| IIF(Pcount()>0,cGet1:=u,cGet1)}, oDlg1, 120, 10, "@!", , 0, , , .F., , .T., , .F., , .F., .F., , .F., .F., , cGet1, , , ,)
+	oGet2 := TGet():New(20, 150, {|u| IIF(Pcount()>0,cGet2:=u,cGet2)}, oDlg1, 120, 10, "@!", , 0, , , .F., , .T., , .F., , .F., .F., , .F., .F., , cGet2, , , ,)
+
+	oButton1 := TButton():New(50 , 10 , "Mostrar Nome", oDlg1, {|| MsgInfo(cGet1 +" "+cGet2,"Conteudo Digitado")}, 60, 15, , , .F., .T., .F., , .F., , , .F.)
+	oButton2 := TButton():New(260, 550, "Fechar"      , oDlg1, {|| oDlg1:End()}                       , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+    
+    
+    oDlg1:Activate(,,,.F.)
+
+Return
