@@ -1,0 +1,18 @@
+#Include 'totvs.ch'
+
+User Function zTFolder()
+
+Local oFolder
+Local aFolder := {"Aba 01","Aba 02", "Aba 03"}
+
+oDlg1 := TDialog():New(0, 0, 0, 0, "Pianel de Abas", , , , , CLR_BLACK , CLR_WHITE, , , .T.)
+
+
+/*oDlg1*/ :Activate(,,,)
+
+
+oFolder := TFolder():New()
+
+
+
+Return
