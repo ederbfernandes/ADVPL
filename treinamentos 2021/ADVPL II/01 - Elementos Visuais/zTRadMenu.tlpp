@@ -1,0 +1,18 @@
+#Include 'totvs.ch'
+
+User Function zTRadMenu()
+Local oDlg1       // 01         02            03        04         05        06         07          08        09           10 
+Local aOpcoes := {"Aberto","Em Andamento","Atrasado","Fechado","Entregue","Adiado","Cancelado","Aguardando interação","Solucionado"}
+Local nOpcao  := 10
+Local oRadio    //Variável que armazenará o objeto
+Local oButton1
+
+oDlg1 := TDialog():New(0,0,500,500,"Painel de Opções",,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+
+oRadio   := TRadMenu():New(010,010,aOpcoes,{|u| IIF(PCount()>0,nOpcao := u,nOpcao)},oDlg1,,,,,,,,80,20,,,,.T.)
+oButton1 := TButton():New(110,10,"Mostrar Escolha",oDlg1,{|| MsgInfo(aOpcoes[nOpcao],"Status do Chamado: ")},60,15,,,.F.,.T.,.F.,,.F.,,,.F.)
+
+
+oDlg1:Activate(,,,.T.)
+
+Return
