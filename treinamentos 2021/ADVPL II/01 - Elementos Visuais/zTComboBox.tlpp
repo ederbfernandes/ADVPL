@@ -1,0 +1,21 @@
+# Include 'totvs.ch'
+
+User Function zTComboBox()
+Local oDlg1
+Local aOpcoes   := {"Aberto","Em Andamento","Atrasado","Fechado","Entregue","Adiado","Cancelado","Aguardando interação","Solucionado"}
+Local cOpcao    := aOpcoes[6]
+Local oComboBox 
+Local oButton1
+
+oDlg1 := TDialog():New(0,0,500,500,"Painel de Opções",,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+
+oComboBox := TComboBox():New(010,010,{|u| IIF(PCount()>0,cOpcao :=u,cOpcao)},aOpcoes,100,20,oDlg1,,{||MsgStop('Mudou para o Item '+ cOpcao)},,,,.T.,,,,,,,,,'cOpcao')
+oButton1 := TButton():New(110,10,"Mostrar Escolha",oDlg1,{|| MsgInfo(cOpcao,"Status do Chamado: ")},60,15,,,.F.,.T.,.F.,,.F.,,,.F.)
+
+
+oDlg1:Activate(,,,.T.)
+
+
+
+
+Return
