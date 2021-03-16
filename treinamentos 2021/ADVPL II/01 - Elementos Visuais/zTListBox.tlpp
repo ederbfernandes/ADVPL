@@ -1,0 +1,22 @@
+# Include 'totvs.ch'
+
+User Function zTListBox()
+
+Local oDlg1
+Local aOpcoes := {"Aberto","Em Andamento","Atrasado","Fechado","Entregue","Adiado","Cancelado","Aguardando interação","Solucionado"}
+Local nOpcao  := 10
+Local oListBox
+Local oButton1
+
+oDlg1 := TDialog():New(0,0,500,500,'Painel de LIsta',,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+
+oListBox := TListBox():New(010,010,{|u| IIF(PCount()>0,nOpcao:=u,nOpcao)},aOpcoes,70,100,,oDlg1,,,,.T.)
+
+oButton1 := TButton():New(10,100,'Mostrar Escolha',oDlg1,{|| MsgInfo(aOpcoes[nOpcao],"Status do Chamado")},60,15,,,.F.,.T.,.F.,,.F.,,,.F.)
+
+oDlg1:Activate(,,,.T.)
+
+
+
+
+Return
