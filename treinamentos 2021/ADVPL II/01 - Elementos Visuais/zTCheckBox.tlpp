@@ -1,0 +1,80 @@
+# Include 'totvs.ch'
+
+
+User Function zTCheckBox()
+	Local oDlg1
+	Local oButton1
+//	Local oButton2
+	Local oButton3
+	Private lCheck1 :=.F.
+	Private lCheck2 :=.F.
+	Private lCheck3 :=.F.
+
+	Private oCheckBox1
+	Private oCheckBox2
+	Private oCheckBox3
+
+
+	oDlg1 := TDialog():New(0,0,500,500,'Painel de CheckBox',,,,,CLR_BLACK,CLR_WHITE,,,.T.)
+
+        oCheckBox1           := TCheckBox():New(20,01,'CheckBox 1',{||lCheck1},oDlg1,100,210,,{||lCheck1:= !lCheck1,IIF(lCheck1,MsgInfo("Está Marcado!!","Status"),MsgInfo("Está Desmarcado!!","Status"))},,,,,,.T.,,,)
+        oCheckBox2           := TCheckBox():New(30,01,'CheckBox 2',,oDlg1,100,210,,,,,,,,.T.,,,)
+        oCheckBox2:bSetGet   := {|| lCheck2}
+        oCheckBox2:bLClicked := {|| lCheck2 := !lCheck2,IIF(lCheck2,MsgInfo("Está Marcado!!","Status"),MsgInfo("Está Desmarcado!!","Status"))}
+        oButton1 := TButton():New(10, 100, 'Mostrar Escolha', oDlg1, {|| CheckOptions()} , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+		oCheckBox3           := TCheckBox():New(00,01,'Marca Todos',{||lCheck3},oDlg1,100,210,,{||lCheck3:= !lCheck3,IIF(lCheck3,MarcaTodos(),DesmarcaTodos())},,,,,,.T.,,,)
+
+	//  oButton2 := TButton():New(30, 100, 'Marca Todos'    , oDlg1, {|| MarcaTodos()}   , 60, 15, , , .F., .T., .F., , .F., , , .F.)
+        oButton3 := TButton():New(50, 100, 'Desmarca Todos' , oDlg1, {|| DesmarcaTodos()}, 60, 15, , , .F., .T., .F., , .F., , , .F.)
+
+
+
+	oDlg1:Activate(,,,.T.)
+
+
+
+
+Return
+
+
+Static Function CheckOptions()
+
+	If lCheck1 .And. lCheck2 = .F.
+		MsgInfo("Somente o CheckBox1 está marcado!!")
+
+	Elseif lCheck2 .And. !lCheck1
+		MsgInfo("Somente o CheckBox2 está marcado!!")
+
+	Elseif lCheck1 .And. lCheck2
+        MsgInfo("Todas as opções estão marcadas!!")
+
+    Else    
+        MsgInfo("Todas as opções estão Desmarcadas!!")    
+
+
+    Endif
+
+Return
+
+
+Static Function MarcaTodos()
+
+lCheck1 := .T.
+lCheck2 := .T.
+
+	oCheckBox1:Refresh()
+	oCheckBox2:Refresh()
+
+Return
+
+
+
+Static Function DesmarcaTodos()
+
+lCheck1 := .F.
+lCheck2 := .F.
+
+	oCheckBox1:Refresh()
+	oCheckBox2:Refresh()
+
+Return
