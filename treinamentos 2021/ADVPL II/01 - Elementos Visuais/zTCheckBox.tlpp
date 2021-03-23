@@ -4,7 +4,7 @@
 User Function zTCheckBox()
 	Local oDlg1
 	Local oButton1
-//	Local oButton2
+	Local oButton2
 	Local oButton3
 	Private lCheck1 :=.F.
 	Private lCheck2 :=.F.
@@ -24,8 +24,8 @@ User Function zTCheckBox()
         oButton1 := TButton():New(10, 100, 'Mostrar Escolha', oDlg1, {|| CheckOptions()} , 60, 15, , , .F., .T., .F., , .F., , , .F.)
 		oCheckBox3           := TCheckBox():New(00,01,'Marca Todos',{||lCheck3},oDlg1,100,210,,{||lCheck3:= !lCheck3,IIF(lCheck3,MarcaTodos(),DesmarcaTodos())},,,,,,.T.,,,)
 
-	//  oButton2 := TButton():New(30, 100, 'Marca Todos'    , oDlg1, {|| MarcaTodos()}   , 60, 15, , , .F., .T., .F., , .F., , , .F.)
-        oButton3 := TButton():New(50, 100, 'Desmarca Todos' , oDlg1, {|| DesmarcaTodos()}, 60, 15, , , .F., .T., .F., , .F., , , .F.)
+        oButton2 := TButton():New(30, 100, 'Desmarca Todos', oDlg1, {|| DesmarcaTodos()}, 60, 15, , , .F., .T., .F., , .F., , , .F.)
+	    oButton3 := TButton():New(50, 100, 'Fechar'        , oDlg1, {|| oDlg1:End()}    , 60, 15, , , .F., .T., .F., , .F., , , .F.)
 
 
 

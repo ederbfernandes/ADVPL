@@ -1,0 +1,33 @@
+#Include 'totvs.ch'
+
+/*/{Protheus.doc} User Function M030INC
+    Ponto de entrada utilizado para gravar no campo A1_XUSRINC o nome do usuário 
+    responsavel pela inclusão do cadastro de cliente
+    Necessário criar o campo A1_XUSRINC na tabela SA1
+    @type  Function
+    @author Eder Fernandes
+    @since 21/03/2021
+    @version 12.1.27
+   /*/
+
+User Function M030INC()
+
+	Local aArea := GetArea()
+
+	If PARAMIXB <> 3
+
+		Reclock("SA1",.F.)
+
+		    SA1->A1_XUSRINC := RetCodUsr()  //__cUsrID
+
+		MsUnlock()
+
+		MsgInfo("Voce acabaou de inserir o cliente: " + M->A1_NOME,"EBF")
+
+	Endif
+
+	RestArea(aArea)
+
+
+
+Return

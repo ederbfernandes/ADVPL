@@ -1,0 +1,14 @@
+# Include 'totvs.ch'
+
+User Function M030DEL()
+
+	Local lRet := .T.
+	Local aArea := GetArea()
+
+	If SA1->A1_PESSOA = "J"
+		lRet := .F.
+		Alert("Não é possivel excluir o cliente Pessoa Jurídica","EBF")
+	Endif
+
+	RestArea (aArea)
+Return (lRet)

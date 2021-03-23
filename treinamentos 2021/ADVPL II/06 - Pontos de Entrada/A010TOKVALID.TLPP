@@ -1,0 +1,15 @@
+#Include 'totvs.ch'
+
+User Function A010TOKVALID(cGrupo)
+
+	Local lReturn := .T.
+
+	If cGrupo $ "0001/0002"
+		lReturn := .F.
+		Alert("Inclusão não permitida, devido ao código do grupo "+ cGrupo + "!","Atenção")
+	Endif
+
+
+Return (lReturn)
+
+

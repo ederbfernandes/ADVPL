@@ -1,0 +1,14 @@
+#Include 'totvs.ch'
+
+
+
+User Function A010TOK()
+
+	Local lRet := .T.
+
+	If Inclui
+		lRet := u_A010TOKVALID(M->B1_GRUPO)
+	Endif
+
+
+Return (lRet)

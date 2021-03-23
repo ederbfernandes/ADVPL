@@ -1,0 +1,16 @@
+#Include 'totvs.ch'
+
+
+User Function MT100LOK()
+	Local lRet      := .T.
+	Local nAcolsTes := aScan(aHeader, {|x| Alltrim(x[2]) == "D1_TES"}) // Posição de acordo com o cabeçalho onde x[2] é a posição que contem o nome do campo
+	Local nAcolsQtd := aScan(aHeader, {|x| Alltrim(x[2]) == "D1_QUANT"})
+	Local cTES      := aCols[n,nAcolsTes]   //n - linha   nAcolsTes = coluna
+	Local nQuant    := aCols[n,nAcolsQtd]
+
+	If nQuant >= 5 .AND. !(cTES$SuperGetMV("MV_YTESQTD"))
+		lRet := .F.
+		Alert("Para quantidades iguais ou superiores a 5, deve-se usar as TES especificas"+Chr(10)+Chr(13)+;
+			"Consulte o seu setor Financeiro","Alert")
+	Endif
+Return lRet
