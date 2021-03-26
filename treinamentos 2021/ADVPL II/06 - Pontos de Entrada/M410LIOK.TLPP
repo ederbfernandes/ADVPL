@@ -1,9 +1,36 @@
 #Include 'totvs.ch'
 
 
+
+/*/{Protheus.doc} M410LIOK
+PONTO DE ENTRADA PARA VALIDAR AS LINHAS DO PEDIDO DE VENDA, NESTE CASO LIMITANDO A QUANTIDADE VENDIDA 
+A 10 UNIDADES POR VENDA
+@type function
+@version  1.0
+@author Eder Fernandes
+@since 25/03/2021
+/*/
 User Function M410LIOK()
+	Local lRet := .T.
+	Local nCount
+	Local nContarIguais := 0
+	Local nAcolsQtdVen  := aScan(aHeader, {|x| Alltrim(x[2]) == "C6_QTDVEN"})
+	Local nAcolsCodProd := aScan(aHeader, {|x| AllTrim(x[2]) == "C6_PRODUTO"})
+	Local nQtdVen       := aCols[n,nAcolsQtdVen]
+	Local cCodProduto   := aCols[n,nAcolsCodProd]
 
-
-
-
-Return 
+	For nCount := 1 to Len(aCols)
+		If aCols[nCount,nAcolsCodProd] == cCodProduto
+			nContarIguais++
+		Endif
+	Next
+	If nContarIguais > 1
+		lRet := .F.
+		Alert("Não é permitida a inclusão de produtos iguais no mesmo pedido!","Operação não permitida!")
+	Else
+		If nQtdVen > 10
+			lRet := .F.
+			Alert("Neste Periodo de Natal não estamos permitindo mais de 10 unidades por venda")
+		Endif
+	Endif
+Return lRet
