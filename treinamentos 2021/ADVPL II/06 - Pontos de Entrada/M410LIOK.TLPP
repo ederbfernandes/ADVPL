@@ -11,8 +11,8 @@ A 10 UNIDADES POR VENDA
 @since 25/03/2021
 /*/
 User Function M410LIOK()
-	Local lRet := .T.
-	Local nCount
+	Local lRet          := .T.
+	Local nCount        
 	Local nContarIguais := 0
 	Local nAcolsQtdVen  := aScan(aHeader, {|x| Alltrim(x[2]) == "C6_QTDVEN"})
 	Local nAcolsCodProd := aScan(aHeader, {|x| AllTrim(x[2]) == "C6_PRODUTO"})
